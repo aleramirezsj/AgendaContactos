@@ -27,4 +27,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Clases\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
 </Project>

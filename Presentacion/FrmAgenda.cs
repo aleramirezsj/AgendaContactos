@@ -27,5 +27,25 @@ namespace Presentacion
             lsvListaContactos.Items.Add("Juan Perez");
             MessageBox.Show("Se ha agregado un contacto");
         }
+
+        private void nudEdad_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudEdad.Value % 5 == 0)
+            {
+                this.Text = "Agenda de Contactos : " + DateTime.Now;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMaximizado.Checked)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
     }
 }
