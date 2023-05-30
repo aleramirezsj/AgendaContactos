@@ -37,14 +37,15 @@
             BtnAceptar = new Button();
             ChkNegrita = new CheckBox();
             ChkCursiva = new CheckBox();
-            CboTamaño = new ComboBox();
             TxtTamaño = new Label();
             RdbIzquierda = new RadioButton();
             RdbCentrado = new RadioButton();
             RdbDerecha = new RadioButton();
             PnlVistaPrevia = new Panel();
             LblVistaprevia = new Label();
+            NudTamaño = new NumericUpDown();
             PnlVistaPrevia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NudTamaño).BeginInit();
             SuspendLayout();
             // 
             // CboColor
@@ -128,14 +129,7 @@
             ChkCursiva.TabIndex = 8;
             ChkCursiva.Text = "Cursiva";
             ChkCursiva.UseVisualStyleBackColor = true;
-            // 
-            // CboTamaño
-            // 
-            CboTamaño.FormattingEnabled = true;
-            CboTamaño.Location = new Point(371, 203);
-            CboTamaño.Name = "CboTamaño";
-            CboTamaño.Size = new Size(151, 28);
-            CboTamaño.TabIndex = 9;
+            ChkCursiva.CheckedChanged += ChkCursiva_CheckedChanged;
             // 
             // TxtTamaño
             // 
@@ -194,17 +188,28 @@
             LblVistaprevia.Size = new Size(381, 104);
             LblVistaprevia.TabIndex = 0;
             // 
+            // NudTamaño
+            // 
+            NudTamaño.Location = new Point(368, 205);
+            NudTamaño.Maximum = new decimal(new int[] { 60, 0, 0, 0 });
+            NudTamaño.Minimum = new decimal(new int[] { 6, 0, 0, 0 });
+            NudTamaño.Name = "NudTamaño";
+            NudTamaño.Size = new Size(150, 27);
+            NudTamaño.TabIndex = 15;
+            NudTamaño.Value = new decimal(new int[] { 6, 0, 0, 0 });
+            NudTamaño.ValueChanged += NudTamaño_ValueChanged;
+            // 
             // FrmPruebaFuentes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(634, 591);
+            Controls.Add(NudTamaño);
             Controls.Add(PnlVistaPrevia);
             Controls.Add(RdbDerecha);
             Controls.Add(RdbCentrado);
             Controls.Add(RdbIzquierda);
             Controls.Add(TxtTamaño);
-            Controls.Add(CboTamaño);
             Controls.Add(ChkCursiva);
             Controls.Add(ChkNegrita);
             Controls.Add(BtnAceptar);
@@ -218,6 +223,7 @@
             Name = "FrmPruebaFuentes";
             Text = "FrmPruebaFuentes";
             PnlVistaPrevia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)NudTamaño).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -233,12 +239,12 @@
         private Button BtnAceptar;
         private CheckBox ChkNegrita;
         private CheckBox ChkCursiva;
-        private ComboBox CboTamaño;
         private Label TxtTamaño;
         private RadioButton RdbIzquierda;
         private RadioButton RdbCentrado;
         private RadioButton RdbDerecha;
         private Panel PnlVistaPrevia;
         private Label LblVistaprevia;
+        private NumericUpDown NudTamaño;
     }
 }
