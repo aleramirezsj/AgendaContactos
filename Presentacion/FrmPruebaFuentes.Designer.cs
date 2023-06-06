@@ -44,8 +44,15 @@
             PnlVistaPrevia = new Panel();
             LblVistaprevia = new Label();
             NudTamaño = new NumericUpDown();
+            RdbInferior = new RadioButton();
+            RdbMedio = new RadioButton();
+            RdbSuperior = new RadioButton();
+            panel1 = new Panel();
+            DtpFechaNacimiento = new DateTimePicker();
+            label4 = new Label();
             PnlVistaPrevia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)NudTamaño).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // CboColor
@@ -87,7 +94,7 @@
             // 
             TxtTexto.Location = new Point(104, 151);
             TxtTexto.Name = "TxtTexto";
-            TxtTexto.Size = new Size(247, 27);
+            TxtTexto.Size = new Size(291, 27);
             TxtTexto.TabIndex = 4;
             // 
             // label3
@@ -150,17 +157,17 @@
             RdbIzquierda.TabStop = true;
             RdbIzquierda.Text = "Izquierda";
             RdbIzquierda.UseVisualStyleBackColor = true;
+            RdbIzquierda.CheckedChanged += RdbIzquierda_CheckedChanged;
             // 
             // RdbCentrado
             // 
-            RdbCentrado.AutoSize = true;
-            RdbCentrado.Location = new Point(285, 271);
+            RdbCentrado.Location = new Point(286, 271);
             RdbCentrado.Name = "RdbCentrado";
-            RdbCentrado.Size = new Size(91, 24);
+            RdbCentrado.Size = new Size(109, 24);
             RdbCentrado.TabIndex = 12;
-            RdbCentrado.TabStop = true;
             RdbCentrado.Text = "Centrado";
             RdbCentrado.UseVisualStyleBackColor = true;
+            RdbCentrado.CheckedChanged += RdbCentrado_CheckedChanged;
             // 
             // RdbDerecha
             // 
@@ -172,21 +179,24 @@
             RdbDerecha.TabStop = true;
             RdbDerecha.Text = "Derecha";
             RdbDerecha.UseVisualStyleBackColor = true;
+            RdbDerecha.CheckedChanged += RdbDerecha_CheckedChanged;
             // 
             // PnlVistaPrevia
             // 
+            PnlVistaPrevia.BorderStyle = BorderStyle.Fixed3D;
             PnlVistaPrevia.Controls.Add(LblVistaprevia);
-            PnlVistaPrevia.Location = new Point(124, 352);
+            PnlVistaPrevia.Location = new Point(25, 409);
             PnlVistaPrevia.Name = "PnlVistaPrevia";
-            PnlVistaPrevia.Size = new Size(398, 125);
+            PnlVistaPrevia.Size = new Size(572, 170);
             PnlVistaPrevia.TabIndex = 14;
             // 
             // LblVistaprevia
             // 
-            LblVistaprevia.Location = new Point(10, 11);
+            LblVistaprevia.Location = new Point(8, 9);
             LblVistaprevia.Name = "LblVistaprevia";
-            LblVistaprevia.Size = new Size(381, 104);
+            LblVistaprevia.Size = new Size(551, 150);
             LblVistaprevia.TabIndex = 0;
+            LblVistaprevia.Text = "Probando la label";
             // 
             // NudTamaño
             // 
@@ -199,11 +209,76 @@
             NudTamaño.Value = new decimal(new int[] { 6, 0, 0, 0 });
             NudTamaño.ValueChanged += NudTamaño_ValueChanged;
             // 
+            // RdbInferior
+            // 
+            RdbInferior.AutoSize = true;
+            RdbInferior.Location = new Point(358, 7);
+            RdbInferior.Name = "RdbInferior";
+            RdbInferior.Size = new Size(78, 24);
+            RdbInferior.TabIndex = 18;
+            RdbInferior.TabStop = true;
+            RdbInferior.Text = "Inferior";
+            RdbInferior.UseVisualStyleBackColor = true;
+            RdbInferior.CheckedChanged += rdbInferior_CheckedChanged;
+            // 
+            // RdbMedio
+            // 
+            RdbMedio.Location = new Point(188, 7);
+            RdbMedio.Name = "RdbMedio";
+            RdbMedio.Size = new Size(109, 24);
+            RdbMedio.TabIndex = 17;
+            RdbMedio.Text = "Medio";
+            RdbMedio.UseVisualStyleBackColor = true;
+            RdbMedio.CheckedChanged += rdbMedio_CheckedChanged;
+            // 
+            // RdbSuperior
+            // 
+            RdbSuperior.AutoSize = true;
+            RdbSuperior.Location = new Point(6, 7);
+            RdbSuperior.Name = "RdbSuperior";
+            RdbSuperior.Size = new Size(86, 24);
+            RdbSuperior.TabIndex = 16;
+            RdbSuperior.TabStop = true;
+            RdbSuperior.Text = "Superior";
+            RdbSuperior.UseVisualStyleBackColor = true;
+            RdbSuperior.CheckedChanged += rdbSuperior_CheckedChanged;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(RdbInferior);
+            panel1.Controls.Add(RdbSuperior);
+            panel1.Controls.Add(RdbMedio);
+            panel1.Location = new Point(104, 331);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(449, 46);
+            panel1.TabIndex = 19;
+            // 
+            // DtpFechaNacimiento
+            // 
+            DtpFechaNacimiento.Format = DateTimePickerFormat.Short;
+            DtpFechaNacimiento.Location = new Point(202, 98);
+            DtpFechaNacimiento.Name = "DtpFechaNacimiento";
+            DtpFechaNacimiento.Size = new Size(124, 27);
+            DtpFechaNacimiento.TabIndex = 20;
+            DtpFechaNacimiento.ValueChanged += DtpFechaNacimiento_ValueChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(47, 105);
+            label4.Name = "label4";
+            label4.Size = new Size(149, 20);
+            label4.TabIndex = 21;
+            label4.Text = "Fecha de nacimiento:";
+            // 
             // FrmPruebaFuentes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(634, 591);
+            Controls.Add(label4);
+            Controls.Add(DtpFechaNacimiento);
+            Controls.Add(panel1);
             Controls.Add(NudTamaño);
             Controls.Add(PnlVistaPrevia);
             Controls.Add(RdbDerecha);
@@ -224,6 +299,8 @@
             Text = "FrmPruebaFuentes";
             PnlVistaPrevia.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)NudTamaño).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,5 +323,11 @@
         private Panel PnlVistaPrevia;
         private Label LblVistaprevia;
         private NumericUpDown NudTamaño;
+        private RadioButton RdbInferior;
+        private RadioButton RdbMedio;
+        private RadioButton RdbSuperior;
+        private Panel panel1;
+        private DateTimePicker DtpFechaNacimiento;
+        private Label label4;
     }
 }
