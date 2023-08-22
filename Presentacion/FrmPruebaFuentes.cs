@@ -16,6 +16,7 @@ namespace Presentacion
         public FrmPruebaFuentes()
         {
             InitializeComponent();
+            CboColor.Items.Add(Enum.GetValues(typeof(KnownColor)));
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
@@ -132,6 +133,21 @@ namespace Presentacion
         private void DtpFechaNacimiento_ValueChanged(object sender, EventArgs e)
         {
             LblVistaprevia.Text = DtpFechaNacimiento.Value.ToShortDateString();
+        }
+
+        private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (CboColor.SelectedIndex) {
+                case 0:
+                    LblVistaprevia.ForeColor = Color.Blue;
+                    break;
+                case 1:
+                    LblVistaprevia.ForeColor= Color.Red;
+                    break;
+                case 2:
+                    LblVistaprevia.ForeColor = Color.Green;
+                    break;
+            }
         }
     }
 }

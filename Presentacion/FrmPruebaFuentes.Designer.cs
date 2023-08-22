@@ -57,12 +57,15 @@
             // 
             // CboColor
             // 
+            CboColor.DropDownStyle = ComboBoxStyle.DropDownList;
             CboColor.FormattingEnabled = true;
+            CboColor.Items.AddRange(new object[] { "Azul", "Rojo", "Verde" });
             CboColor.Location = new Point(456, 50);
             CboColor.Margin = new Padding(3, 4, 3, 4);
             CboColor.Name = "CboColor";
             CboColor.Size = new Size(115, 28);
             CboColor.TabIndex = 0;
+            CboColor.SelectedIndexChanged += CboColor_SelectedIndexChanged;
             // 
             // label1
             // 
