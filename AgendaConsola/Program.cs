@@ -10,10 +10,12 @@ public class Program
         conexionAgenda.Conectar();
 
         //conexionAgenda.InsertarUnRegistro();
-        conexionAgenda.InsertarUnRegistroPorConsola();
+        //conexionAgenda.InsertarUnRegistroPorConsola();
 
         conexionAgenda.ListarContactos();
+        conexionAgenda.ActualizarUnRegistro();
         
-        
+        conexionAgenda.ListarContactos();
+
     }
 }

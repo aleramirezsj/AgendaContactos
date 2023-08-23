@@ -10,10 +10,12 @@ namespace AgendaConsola
 {
     public class ConexionAgenda
     {
+        #region definición  de atributos
         string cadenaConexión;
         public SqlConnection oConexión;
         SqlCommand oComandoSql = new SqlCommand();
         SqlDataReader oReader;
+        #endregion
         public ConexionAgenda() {
             cadenaConexión = "Data Source =.\\SQLEXPRESS;";
             cadenaConexión += "Initial Catalog = Agenda;";
@@ -72,6 +74,7 @@ namespace AgendaConsola
                     Console.WriteLine(contacto);
                 }
             }
+            if (oReader != null) oReader.Close();
         }
         public void InsertarUnRegistroPorConsola()
         {
@@ -101,6 +104,40 @@ namespace AgendaConsola
                 Console.WriteLine(error.Message);
                 Console.WriteLine("Ha fallado la ejecución del comando");
             }
+        }
+        public void ActualizarUnRegistro()
+        {
+            //pido el número de contacto a cambiar
+            Console.Write("Ingrese el Nro de contacto a cambiar:");
+            int idAModificar=int.Parse(Console.ReadLine());
+
+            //pido el Apellido
+            Console.Write("Ingrese el apellido:");
+            string apellido = Console.ReadLine();
+
+            //pido el nombre
+            Console.Write("Ingrese el nombre:");
+            string nombre = Console.ReadLine();
+
+            //pido el email
+            Console.Write("Ingrese el email:");
+            string email = Console.ReadLine();
+
+            //escribimos el comando sql en la propiedad "CommandText"
+            oComandoSql.CommandText = $"UPDATE Contactos SET apellido='{apellido}', nombre='{nombre}', email='{email}' WHERE id={idAModificar}";
+
+            try
+            {
+                //ejecutamos el comando con el método que no retorna datos
+                int filasAfectadas = oComandoSql.ExecuteNonQuery();
+                Console.WriteLine($"{filasAfectadas} filas actualizadas");
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
+                Console.WriteLine("Ha fallado la ejecución del comando");
+            }
+
         }
     }
 }
