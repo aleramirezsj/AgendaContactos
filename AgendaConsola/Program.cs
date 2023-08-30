@@ -6,16 +6,7 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        ConexionAgenda conexionAgenda = new ConexionAgenda();
-        conexionAgenda.Conectar();
-
-        //conexionAgenda.InsertarUnRegistro();
-        //conexionAgenda.InsertarUnRegistroPorConsola();
-
-        conexionAgenda.ListarContactos();
-        conexionAgenda.ActualizarUnRegistro();
-        
-        conexionAgenda.ListarContactos();
+        AgendaMenu menu = new AgendaMenu();
 
     }
 }

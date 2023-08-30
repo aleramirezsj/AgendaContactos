@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AgendaConsola
 {
-    public class ConexionAgenda
+    public class AgendaDatos
     {
         #region definición  de atributos
         string cadenaConexión;
@@ -16,22 +18,23 @@ namespace AgendaConsola
         SqlCommand oComandoSql = new SqlCommand();
         SqlDataReader oReader;
         #endregion
-        public ConexionAgenda() {
+        public AgendaDatos() {
             cadenaConexión = "Data Source =.\\SQLEXPRESS;";
             cadenaConexión += "Initial Catalog = Agenda;";
             cadenaConexión += "User Id = sa; ";
             cadenaConexión += "Password = 123;";
             cadenaConexión += "MultipleActiveResultSets = True;";
             cadenaConexión += "Encrypt=False";
+            Conectar();
         }
-        public void Conectar()
+        private void Conectar()
         {
             oConexión = new SqlConnection(cadenaConexión);
 
             try
             {
                 oConexión.Open();
-                Console.WriteLine("La conexión se realizó con exito");
+                Debug.Print("La conexión se realizó con exito");
                 //le definimos la conexión que utiliza
                 oComandoSql.Connection = oConexión;
 
@@ -49,26 +52,19 @@ namespace AgendaConsola
             //escribimos el comando sql en la propiedad "CommandText"
             oComandoSql.CommandText = "Insert into Contactos (apellido, nombre, email) values ('Neme','Francesca','franchusj@gmail.com')";
 
-            try
-            {
-                //ejecutamos el comando con el método que no retorna datos
-                int filasAfectadas = oComandoSql.ExecuteNonQuery();
-                Console.WriteLine($"{filasAfectadas} filas afectadas");
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-                Console.WriteLine("Ha fallado la ejecución del comando");
-            }
+            this.EjecutarComando();
         }
         public void ListarContactos()
         {
+            Console.WriteLine("        Contactos");
+            Console.WriteLine("**************************");
             oComandoSql.CommandText = "Select * from Contactos";
             oReader = oComandoSql.ExecuteReader();
             if ( oReader.HasRows ) { 
                 while ( oReader.Read())
                 {
-                    string contacto = oReader["apellido"].ToString()+" ";
+                    string contacto = oReader["id"].ToString() + " ";
+                    contacto += oReader["apellido"].ToString()+" ";
                     contacto += oReader["nombre"].ToString()+" ";
                     contacto += oReader["email"].ToString();
                     Console.WriteLine(contacto);
@@ -93,17 +89,31 @@ namespace AgendaConsola
             //escribimos el comando sql en la propiedad "CommandText"
             oComandoSql.CommandText = $"Insert into Contactos (apellido, nombre, email) values ('{apellido}','{nombre}','{email}')";
 
-            try
-            {
-                //ejecutamos el comando con el método que no retorna datos
-                int filasAfectadas = oComandoSql.ExecuteNonQuery();
-                Console.WriteLine($"{filasAfectadas} filas afectadas");
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-                Console.WriteLine("Ha fallado la ejecución del comando");
-            }
+            this.EjecutarComando();
+        }
+        public void InsertarUnRegistroConProcedimientosAlmacenados()
+        {
+            //pido el Apellido
+            Console.Write("Ingrese el apellido:");
+            string apellido = Console.ReadLine();
+
+            //pido el nombre
+            Console.Write("Ingrese el nombre:");
+            string nombre = Console.ReadLine();
+
+            //pido el email
+            Console.Write("Ingrese el email:");
+            string email = Console.ReadLine();
+
+            //escribimos el comando sql en la propiedad "CommandText"
+            oComandoSql.CommandType = CommandType.StoredProcedure;
+            oComandoSql.CommandText = "InsertarContacto";
+            oComandoSql.Parameters.AddWithValue("@ParamApellido", apellido);
+            oComandoSql.Parameters.AddWithValue("@ParamNombre", nombre);
+            oComandoSql.Parameters.AddWithValue("@ParamEmail", email);
+
+            this.EjecutarComando();
+            oComandoSql.CommandType = CommandType.Text;
         }
         public void ActualizarUnRegistro()
         {
@@ -126,6 +136,12 @@ namespace AgendaConsola
             //escribimos el comando sql en la propiedad "CommandText"
             oComandoSql.CommandText = $"UPDATE Contactos SET apellido='{apellido}', nombre='{nombre}', email='{email}' WHERE id={idAModificar}";
 
+            this.EjecutarComando();
+
+        }
+
+        private void EjecutarComando()
+        {
             try
             {
                 //ejecutamos el comando con el método que no retorna datos
@@ -136,8 +152,20 @@ namespace AgendaConsola
             {
                 Console.WriteLine(error.Message);
                 Console.WriteLine("Ha fallado la ejecución del comando");
+                Console.ReadLine();
             }
+        }
 
+        public void EliminarUnRegistro()
+        {
+            //pido el número de contacto a cambiar
+            Console.Write("Ingrese el Nro de contacto a cambiar:");
+            int idAEliminar = int.Parse(Console.ReadLine());
+
+            //escribimos el comando sql en la propiedad "CommandText"
+            oComandoSql.CommandText = $"DELETE FROM Contactos WHERE id={idAEliminar}";
+
+            this.EjecutarComando();
         }
     }
 }
