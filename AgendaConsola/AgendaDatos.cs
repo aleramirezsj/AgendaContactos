@@ -29,7 +29,8 @@ namespace AgendaConsola
         }
         private void Conectar()
         {
-            oConexión = new SqlConnection(cadenaConexión);
+            oConexión = new SqlConnection();
+            oConexión.ConnectionString = cadenaConexión;
 
             try
             {
@@ -105,8 +106,9 @@ namespace AgendaConsola
             Console.Write("Ingrese el email:");
             string email = Console.ReadLine();
 
-            //escribimos el comando sql en la propiedad "CommandText"
+            //definimos que el comandosql trabaja con procedimientos almacenados
             oComandoSql.CommandType = CommandType.StoredProcedure;
+            //escribimos el nombre del procedimiento almacenado
             oComandoSql.CommandText = "InsertarContacto";
             oComandoSql.Parameters.AddWithValue("@ParamApellido", apellido);
             oComandoSql.Parameters.AddWithValue("@ParamNombre", nombre);

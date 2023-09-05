@@ -8,7 +8,7 @@ namespace AgendaConsola
 {
     public class AgendaMenu
     {
-        AgendaDatos agendaDatos=new AgendaDatos();
+        AgendaDatosEF agendaDatos=new AgendaDatosEF();
         public AgendaMenu()
         {
             int opcion = 0;
@@ -32,7 +32,7 @@ namespace AgendaConsola
                     break;
                 case 2:
                     Console.Clear();
-                    agendaDatos.InsertarUnRegistroConProcedimientosAlmacenados();
+                    agendaDatos.InsertarUnRegistroPorConsola();
                     break;
                 case 3:
                     Console.Clear();

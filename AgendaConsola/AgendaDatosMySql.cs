@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,9 +15,9 @@ namespace AgendaConsola
     {
         #region definición  de atributos
         string cadenaConexión;
-        public SqlConnection oConexión;
-        SqlCommand oComandoSql = new SqlCommand();
-        SqlDataReader oReader;
+        public MySqlConnection oConexión;
+        MySqlCommand oComandoSql = new MySqlCommand();
+        MySqlDataReader oReader;
         #endregion
         public AgendaDatosMySql() {
             cadenaConexión = "server =127.0.0.1;";
@@ -27,7 +28,7 @@ namespace AgendaConsola
         }
         private void Conectar()
         {
-            oConexión = new SqlConnection(cadenaConexión);
+            oConexión = new MySqlConnection(cadenaConexión);
 
             try
             {
