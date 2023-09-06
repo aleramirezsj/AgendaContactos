@@ -47,7 +47,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(161, 27);
+            label1.Location = new Point(135, 41);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
             label1.TabIndex = 0;
@@ -55,14 +55,14 @@
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(263, 27);
+            txtApellido.Location = new Point(237, 41);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(253, 27);
             txtApellido.TabIndex = 1;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(263, 75);
+            txtNombre.Location = new Point(237, 89);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(253, 27);
             txtNombre.TabIndex = 3;
@@ -70,7 +70,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(161, 75);
+            label2.Location = new Point(135, 89);
             label2.Name = "label2";
             label2.Size = new Size(67, 20);
             label2.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(263, 127);
+            txtEmail.Location = new Point(237, 141);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(253, 27);
             txtEmail.TabIndex = 5;
@@ -86,7 +86,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(161, 127);
+            label3.Location = new Point(135, 141);
             label3.Name = "label3";
             label3.Size = new Size(49, 20);
             label3.TabIndex = 4;
@@ -95,7 +95,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(161, 180);
+            label4.Location = new Point(135, 194);
             label4.Name = "label4";
             label4.Size = new Size(70, 20);
             label4.TabIndex = 6;
@@ -103,14 +103,15 @@
             // 
             // numericTelefono
             // 
-            numericTelefono.Location = new Point(263, 180);
+            numericTelefono.Location = new Point(237, 194);
+            numericTelefono.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
             numericTelefono.Name = "numericTelefono";
             numericTelefono.Size = new Size(253, 27);
             numericTelefono.TabIndex = 7;
             // 
             // txtDirección
             // 
-            txtDirección.Location = new Point(263, 235);
+            txtDirección.Location = new Point(237, 249);
             txtDirección.Name = "txtDirección";
             txtDirección.Size = new Size(253, 27);
             txtDirección.TabIndex = 9;
@@ -118,7 +119,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(161, 235);
+            label5.Location = new Point(135, 249);
             label5.Name = "label5";
             label5.Size = new Size(75, 20);
             label5.TabIndex = 8;
@@ -127,7 +128,7 @@
             // checkFavorito
             // 
             checkFavorito.AutoSize = true;
-            checkFavorito.Location = new Point(264, 285);
+            checkFavorito.Location = new Point(238, 299);
             checkFavorito.Name = "checkFavorito";
             checkFavorito.Size = new Size(84, 24);
             checkFavorito.TabIndex = 10;
@@ -136,21 +137,23 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(193, 342);
+            btnGuardar.Location = new Point(175, 358);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(94, 29);
             btnGuardar.TabIndex = 11;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(338, 342);
+            btnCancelar.Location = new Point(320, 358);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(94, 29);
             btnCancelar.TabIndex = 12;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // FrmNuevoEditarContacto
             // 
@@ -171,6 +174,7 @@
             Controls.Add(txtApellido);
             Controls.Add(label1);
             Name = "FrmNuevoEditarContacto";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Nuevo/Editar Contacto";
             ((System.ComponentModel.ISupportInitialize)numericTelefono).EndInit();
             ResumeLayout(false);
