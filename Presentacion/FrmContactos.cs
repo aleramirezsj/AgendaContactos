@@ -13,7 +13,7 @@ namespace Presentacion
 {
     public partial class FrmContactos : Form
     {
-        AgendaContext db = new AgendaContext();
+        
         public FrmContactos()
         {
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace Presentacion
 
         private void CargarGrilla()
         {
+            AgendaContext db = new AgendaContext();
             dataGridContactos.DataSource = db.Contactos.ToList();
         }
 
@@ -40,15 +41,16 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            AgendaContext db = new AgendaContext();
             //obtenemos el id y el nombre del contacto seleccionado
             int idABorrar = (int)dataGridContactos.CurrentRow.Cells[0].Value;
-            string contactoABorrar = (string)dataGridContactos.CurrentRow.Cells[1].Value+" " + dataGridContactos.CurrentRow.Cells[2].Value;
+            string contactoABorrar = (string)dataGridContactos.CurrentRow.Cells[1].Value + " " + dataGridContactos.CurrentRow.Cells[2].Value;
 
             //preguntamos si está seguro que desea borrar
-            DialogResult pregunta = MessageBox.Show($"¿Está seguro que desea borrar al contacto {contactoABorrar}?","Eliminar contacto",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            
+            DialogResult pregunta = MessageBox.Show($"¿Está seguro que desea borrar al contacto {contactoABorrar}?", "Eliminar contacto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             //si responde que si, intentamos borrar en un try
-            if( pregunta == DialogResult.Yes )
+            if (pregunta == DialogResult.Yes)
             {
                 try
                 {
@@ -72,7 +74,19 @@ namespace Presentacion
 
         private void CargarGrillaFiltrada()
         {
-            dataGridContactos.DataSource = db.Contactos.Where(c=>c.Apellido.Contains(txtBusqueda.Text)||c.Nombre.Contains(txtBusqueda.Text)).ToList();
+            AgendaContext db = new AgendaContext();
+            dataGridContactos.DataSource = db.Contactos.Where(c => c.Apellido.Contains(txtBusqueda.Text) || c.Nombre.Contains(txtBusqueda.Text)).ToList();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            //obtenemos el id a modificar
+            int idAModificar = (int)dataGridContactos.CurrentRow.Cells[0].Value;
+
+            //llamamos al formulario nuevo/editar y le pasamos como argumento el idAModificar
+            FrmNuevoEditarContacto frmNuevoEditarContacto = new FrmNuevoEditarContacto(idAModificar);
+            frmNuevoEditarContacto.ShowDialog();
+            CargarGrilla();
         }
     }
 }

@@ -44,8 +44,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { iconMenuItem1, iconMenuItem2 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(914, 30);
+            menuStrip1.Size = new Size(800, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -56,7 +55,7 @@
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem1.Name = "iconMenuItem1";
-            iconMenuItem1.Size = new Size(109, 24);
+            iconMenuItem1.Size = new Size(93, 24);
             iconMenuItem1.Text = "Contactos";
             // 
             // iconMenuItem3
@@ -65,7 +64,7 @@
             iconMenuItem3.IconColor = Color.Black;
             iconMenuItem3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem3.Name = "iconMenuItem3";
-            iconMenuItem3.Size = new Size(224, 26);
+            iconMenuItem3.Size = new Size(179, 22);
             iconMenuItem3.Text = "Gestionar contactos";
             iconMenuItem3.Click += iconMenuItem3_Click;
             // 
@@ -76,7 +75,7 @@
             iconMenuItem2.IconColor = Color.Black;
             iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem2.Name = "iconMenuItem2";
-            iconMenuItem2.Size = new Size(72, 24);
+            iconMenuItem2.Size = new Size(61, 24);
             iconMenuItem2.Text = "Salir";
             // 
             // iconMenuItem4
@@ -85,13 +84,14 @@
             iconMenuItem4.IconColor = Color.Black;
             iconMenuItem4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem4.Name = "iconMenuItem4";
-            iconMenuItem4.Size = new Size(200, 26);
+            iconMenuItem4.Size = new Size(184, 26);
             iconMenuItem4.Text = "Salir del sistema";
+            iconMenuItem4.Click += iconMenuItem4_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(197, 6);
+            toolStripSeparator1.Size = new Size(181, 6);
             // 
             // iconMenuItem5
             // 
@@ -99,18 +99,17 @@
             iconMenuItem5.IconColor = Color.Black;
             iconMenuItem5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem5.Name = "iconMenuItem5";
-            iconMenuItem5.Size = new Size(200, 26);
+            iconMenuItem5.Size = new Size(184, 26);
             iconMenuItem5.Text = "Acerca de ...";
             iconMenuItem5.Click += iconMenuItem5_Click;
             // 
             // FrmMenu
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmMenu";
             Text = "Agenda de contactos :: Programación I - 2023";
             WindowState = FormWindowState.Maximized;

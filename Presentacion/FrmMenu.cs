@@ -28,5 +28,10 @@ namespace Presentacion
             FrmContactos frmContactos = new FrmContactos();
             frmContactos.ShowDialog();
         }
+
+        private void iconMenuItem4_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

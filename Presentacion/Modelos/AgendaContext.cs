@@ -17,6 +17,7 @@ public partial class AgendaContext : DbContext
 
     //se crean tantos DbSet como tablas existen en la base de datos
     public virtual DbSet<Contacto> Contactos { get; set; }
+    public virtual DbSet<Localidad> Localidades { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=agenda;User Id = sa; Password = 123; MultipleActiveResultSets = True; Encrypt=False");
