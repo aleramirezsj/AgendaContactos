@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentacion.Forms.Localidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +33,12 @@ namespace Presentacion
         private void iconMenuItem4_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void gestionarLocalidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmLocalidades frmLocalidades = new FrmLocalidades();
+            frmLocalidades.ShowDialog();
         }
     }
 }

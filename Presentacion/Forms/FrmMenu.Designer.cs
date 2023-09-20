@@ -35,6 +35,7 @@
             iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
+            gestionarLocalidadesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             // 
             // iconMenuItem1
             // 
-            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem3 });
+            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem3, gestionarLocalidadesToolStripMenuItem });
             iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -64,7 +65,7 @@
             iconMenuItem3.IconColor = Color.Black;
             iconMenuItem3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem3.Name = "iconMenuItem3";
-            iconMenuItem3.Size = new Size(179, 22);
+            iconMenuItem3.Size = new Size(190, 26);
             iconMenuItem3.Text = "Gestionar contactos";
             iconMenuItem3.Click += iconMenuItem3_Click;
             // 
@@ -84,14 +85,14 @@
             iconMenuItem4.IconColor = Color.Black;
             iconMenuItem4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem4.Name = "iconMenuItem4";
-            iconMenuItem4.Size = new Size(184, 26);
+            iconMenuItem4.Size = new Size(158, 22);
             iconMenuItem4.Text = "Salir del sistema";
             iconMenuItem4.Click += iconMenuItem4_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(181, 6);
+            toolStripSeparator1.Size = new Size(155, 6);
             // 
             // iconMenuItem5
             // 
@@ -99,9 +100,16 @@
             iconMenuItem5.IconColor = Color.Black;
             iconMenuItem5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem5.Name = "iconMenuItem5";
-            iconMenuItem5.Size = new Size(184, 26);
+            iconMenuItem5.Size = new Size(158, 22);
             iconMenuItem5.Text = "Acerca de ...";
             iconMenuItem5.Click += iconMenuItem5_Click;
+            // 
+            // gestionarLocalidadesToolStripMenuItem
+            // 
+            gestionarLocalidadesToolStripMenuItem.Name = "gestionarLocalidadesToolStripMenuItem";
+            gestionarLocalidadesToolStripMenuItem.Size = new Size(190, 26);
+            gestionarLocalidadesToolStripMenuItem.Text = "Gestionar localidades";
+            gestionarLocalidadesToolStripMenuItem.Click += gestionarLocalidadesToolStripMenuItem_Click;
             // 
             // FrmMenu
             // 
@@ -128,5 +136,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
         private ToolStripSeparator toolStripSeparator1;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
+        private ToolStripMenuItem gestionarLocalidadesToolStripMenuItem;
     }
 }

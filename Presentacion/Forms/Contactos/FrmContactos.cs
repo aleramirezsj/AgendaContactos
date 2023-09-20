@@ -13,11 +13,12 @@ namespace Presentacion
 {
     public partial class FrmContactos : Form
     {
-        
+
         public FrmContactos()
         {
             InitializeComponent();
             CargarGrilla();
+            this.StartPosition = FormStartPosition.CenterParent;
         }
 
         private void CargarGrilla()
