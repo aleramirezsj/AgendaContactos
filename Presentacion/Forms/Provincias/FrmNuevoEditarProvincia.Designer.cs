@@ -28,19 +28,91 @@
         /// </summary>
         private void InitializeComponent()
         {
+            txtNombre = new TextBox();
+            txtRegion = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            btnGuardar = new Button();
+            btnCancelar = new Button();
             SuspendLayout();
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(235, 78);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(145, 23);
+            txtNombre.TabIndex = 0;
+            // 
+            // txtRegion
+            // 
+            txtRegion.Location = new Point(235, 120);
+            txtRegion.Name = "txtRegion";
+            txtRegion.Size = new Size(145, 23);
+            txtRegion.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(175, 79);
+            label1.Name = "label1";
+            label1.Size = new Size(54, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Nombre:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(175, 128);
+            label2.Name = "label2";
+            label2.Size = new Size(47, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Región:";
+            // 
+            // btnGuardar
+            // 
+            btnGuardar.Location = new Point(144, 221);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(75, 23);
+            btnGuardar.TabIndex = 4;
+            btnGuardar.Text = "&Guardar";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(296, 221);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.TabIndex = 5;
+            btnCancelar.Text = "&Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += button1_Click;
             // 
             // FrmNuevoEditarProvincia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(678, 450);
+            ClientSize = new Size(509, 291);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGuardar);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(txtRegion);
+            Controls.Add(txtNombre);
             Name = "FrmNuevoEditarProvincia";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Nuevo/editar provincia";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox txtNombre;
+        private TextBox txtRegion;
+        private Label label1;
+        private Label label2;
+        private Button btnGuardar;
+        private Button btnCancelar;
     }
 }

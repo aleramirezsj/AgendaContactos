@@ -45,6 +45,7 @@
             dataGridProvincias.Location = new Point(82, 40);
             dataGridProvincias.Name = "dataGridProvincias";
             dataGridProvincias.RowTemplate.Height = 25;
+            dataGridProvincias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridProvincias.Size = new Size(506, 191);
             dataGridProvincias.TabIndex = 0;
             // 
@@ -86,6 +87,7 @@
             btnEliminar.TabIndex = 9;
             btnEliminar.Text = "&Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
@@ -96,6 +98,7 @@
             btnModificar.TabIndex = 8;
             btnModificar.Text = "&Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnNuevo
             // 

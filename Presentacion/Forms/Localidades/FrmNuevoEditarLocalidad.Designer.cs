@@ -34,12 +34,14 @@
             label4 = new Label();
             btnCancelar = new Button();
             btnGuardar = new Button();
+            cboProvincia = new ComboBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericCodigoPostal).BeginInit();
             SuspendLayout();
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(279, 160);
+            txtNombre.Location = new Point(279, 80);
             txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(222, 23);
@@ -48,7 +50,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(190, 160);
+            label2.Location = new Point(190, 80);
             label2.Name = "label2";
             label2.Size = new Size(54, 15);
             label2.TabIndex = 4;
@@ -56,7 +58,7 @@
             // 
             // numericCodigoPostal
             // 
-            numericCodigoPostal.Location = new Point(280, 204);
+            numericCodigoPostal.Location = new Point(280, 124);
             numericCodigoPostal.Margin = new Padding(3, 2, 3, 2);
             numericCodigoPostal.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             numericCodigoPostal.Name = "numericCodigoPostal";
@@ -66,7 +68,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(191, 204);
+            label4.Location = new Point(191, 124);
             label4.Name = "label4";
             label4.Size = new Size(84, 15);
             label4.TabIndex = 8;
@@ -94,11 +96,30 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // cboProvincia
+            // 
+            cboProvincia.FormattingEnabled = true;
+            cboProvincia.Location = new Point(280, 173);
+            cboProvincia.Name = "cboProvincia";
+            cboProvincia.Size = new Size(222, 23);
+            cboProvincia.TabIndex = 15;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(191, 176);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 15);
+            label1.TabIndex = 16;
+            label1.Text = "Provincia:";
+            // 
             // FrmNuevoEditarLocalidad
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(cboProvincia);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(numericCodigoPostal);
@@ -120,5 +141,7 @@
         private Label label4;
         private Button btnCancelar;
         private Button btnGuardar;
+        private ComboBox cboProvincia;
+        private Label label1;
     }
 }

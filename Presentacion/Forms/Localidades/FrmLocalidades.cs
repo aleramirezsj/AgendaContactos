@@ -1,4 +1,5 @@
-﻿using Presentacion.Modelos;
+﻿using Microsoft.EntityFrameworkCore;
+using Presentacion.Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace Presentacion.Forms.Localidades
         private void CargarGrilla()
         {
             AgendaContext db = new AgendaContext();
-            dataGridLocalidades.DataSource = db.Localidades.ToList();
+            dataGridLocalidades.DataSource = db.Localidades.Include(l=>l.Provincia).ToList();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

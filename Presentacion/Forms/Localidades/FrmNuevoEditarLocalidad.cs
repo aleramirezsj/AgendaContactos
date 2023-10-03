@@ -24,22 +24,34 @@ namespace Presentacion.Forms.Localidades
         public FrmNuevoEditarLocalidad()
         {
             InitializeComponent();
+            CargarComboProvincia();
+        }
+
+        private void CargarComboProvincia()
+        {
+            cboProvincia.DataSource=db.Provincias.ToList();
+            cboProvincia.DisplayMember = "Nombre";
+            cboProvincia.ValueMember = "Id";
         }
 
         public FrmNuevoEditarLocalidad(int idAModificar)
         {
             InitializeComponent();
             this.idModificado = idAModificar;
+            CargarComboProvincia();
             CargarDatosDeLocalidadAModificar();
+
         }
 
         private void CargarDatosDeLocalidadAModificar()
         {
             localidad = db.Localidades.Find(this.idModificado);
-          
+
             txtNombre.Text = localidad.Nombre;
-            numericCodigoPostal.Value = localidad.CodigoPostal ;
-           
+            numericCodigoPostal.Value = localidad.CodigoPostal;
+            //establecemos la provincia, de la localidad que estamos editando, en el combobox, a través de la propiedad SelectValue
+            cboProvincia.SelectedValue= localidad.ProvinciaId;
+
 
         }
 
@@ -47,6 +59,7 @@ namespace Presentacion.Forms.Localidades
         {
             localidad.Nombre = txtNombre.Text;
             localidad.CodigoPostal = (int)numericCodigoPostal.Value;
+            localidad.ProvinciaId = (int)cboProvincia.SelectedValue;
 
             if (this.idModificado == 0)
             {
