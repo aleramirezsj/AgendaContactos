@@ -14,28 +14,35 @@ namespace Presentacion.Forms.Provincias
 {
     public partial class FrmNuevoEditarProvincia : Form
     {
-        Provincia provincia=new Provincia();
+        Provincia provincia = new Provincia();
         int idProvinciaEditada = 0;
         public FrmNuevoEditarProvincia()
         {
             InitializeComponent();
+            CargarComboRegiones();
+        }
+
+        private void CargarComboRegiones()
+        {
+            comboRegion.DataSource = Enum.GetValues(typeof(RegionEnum));
         }
 
         public FrmNuevoEditarProvincia(int idProvinciaAModificar)
         {
             InitializeComponent();
-            this.idProvinciaEditada=idProvinciaAModificar;
+            this.idProvinciaEditada = idProvinciaAModificar;
+            CargarComboRegiones();
             CargarDatosDeLaProvincia();
         }
 
         private void CargarDatosDeLaProvincia()
         {
-            AgendaContext db= new AgendaContext();
-            provincia=db.Provincias.Find(this.idProvinciaEditada);
+            AgendaContext db = new AgendaContext();
+            provincia = db.Provincias.Find(this.idProvinciaEditada);
             if (provincia != null)
             {
                 txtNombre.Text = provincia.Nombre;
-                txtRegion.Text = provincia.Region;
+                comboRegion.SelectedItem = provincia.Region;
             }
 
 
@@ -49,17 +56,18 @@ namespace Presentacion.Forms.Provincias
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             //tomamos los datos que están en la pantalla y los almacenamos en el campo provincia del formulario
-            provincia.Nombre=txtNombre.Text;
-            provincia.Region=txtRegion.Text;
+            provincia.Nombre = txtNombre.Text;
+            provincia.Region = (RegionEnum)comboRegion.SelectedValue;
 
             //instanciamos la clase AgendaContext para poder operar con los datos
-            AgendaContext db= new AgendaContext();
-            
+            AgendaContext db = new AgendaContext();
+
             //chequeamos si estamos cargando una nueva provincia, evaluando el campo idProvinciaEditada
-            if(this.idProvinciaEditada==0)
+            if (this.idProvinciaEditada == 0)
             {
                 db.Provincias.Add(provincia);
-            }else
+            }
+            else
             {
                 db.Entry((Provincia)provincia).State = EntityState.Modified;
             }

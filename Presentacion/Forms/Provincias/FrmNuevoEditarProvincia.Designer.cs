@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             txtNombre = new TextBox();
-            txtRegion = new TextBox();
             label1 = new Label();
             label2 = new Label();
             btnGuardar = new Button();
             btnCancelar = new Button();
+            comboRegion = new ComboBox();
             SuspendLayout();
             // 
             // txtNombre
@@ -42,13 +42,6 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(145, 23);
             txtNombre.TabIndex = 0;
-            // 
-            // txtRegion
-            // 
-            txtRegion.Location = new Point(235, 120);
-            txtRegion.Name = "txtRegion";
-            txtRegion.Size = new Size(145, 23);
-            txtRegion.TabIndex = 1;
             // 
             // label1
             // 
@@ -88,16 +81,24 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += button1_Click;
             // 
+            // comboRegion
+            // 
+            comboRegion.FormattingEnabled = true;
+            comboRegion.Location = new Point(235, 125);
+            comboRegion.Name = "comboRegion";
+            comboRegion.Size = new Size(145, 23);
+            comboRegion.TabIndex = 6;
+            // 
             // FrmNuevoEditarProvincia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(509, 291);
+            Controls.Add(comboRegion);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtRegion);
             Controls.Add(txtNombre);
             Name = "FrmNuevoEditarProvincia";
             StartPosition = FormStartPosition.CenterParent;
@@ -109,10 +110,10 @@
         #endregion
 
         private TextBox txtNombre;
-        private TextBox txtRegion;
         private Label label1;
         private Label label2;
         private Button btnGuardar;
         private Button btnCancelar;
+        private ComboBox comboRegion;
     }
 }

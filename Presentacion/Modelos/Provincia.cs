@@ -10,7 +10,7 @@ namespace Presentacion.Modelos
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Region { get; set; }
+        public RegionEnum Region { get; set; }
 
         public override string ToString()
         {
