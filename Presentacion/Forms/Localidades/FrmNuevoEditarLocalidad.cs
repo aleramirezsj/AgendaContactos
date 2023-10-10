@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Presentacion.Forms.Provincias;
 using Presentacion.Modelos;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Presentacion.Forms.Localidades
     public partial class FrmNuevoEditarLocalidad : Form
     {
         AgendaContext db = new AgendaContext();
+        public int IdAgregadoModificado { get; set; }
 
         //campos que utilizamos si modificamos a un contacto
         int idModificado = 0;
@@ -29,7 +31,7 @@ namespace Presentacion.Forms.Localidades
 
         private void CargarComboProvincia()
         {
-            cboProvincia.DataSource=db.Provincias.ToList();
+            cboProvincia.DataSource = db.Provincias.ToList();
             cboProvincia.DisplayMember = "Nombre";
             cboProvincia.ValueMember = "Id";
         }
@@ -50,7 +52,7 @@ namespace Presentacion.Forms.Localidades
             txtNombre.Text = localidad.Nombre;
             numericCodigoPostal.Value = localidad.CodigoPostal;
             //establecemos la provincia, de la localidad que estamos editando, en el combobox, a través de la propiedad SelectValue
-            cboProvincia.SelectedValue= localidad.ProvinciaId;
+            cboProvincia.SelectedValue = localidad.ProvinciaId;
 
 
         }
@@ -71,12 +73,23 @@ namespace Presentacion.Forms.Localidades
                 db.Entry((Localidad)localidad).State = EntityState.Modified;
             }
             db.SaveChanges();
+            this.IdAgregadoModificado = localidad.Id;
             this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAgregarProvincia_Click(object sender, EventArgs e)
+        {
+            FrmNuevoEditarProvincia frmNuevoEditarProvincia = new FrmNuevoEditarProvincia();
+            frmNuevoEditarProvincia.ShowDialog();
+            CargarComboProvincia();
+            cboProvincia.SelectedValue = frmNuevoEditarProvincia.IdAgregadoEditado;
+            
+
         }
     }
 }

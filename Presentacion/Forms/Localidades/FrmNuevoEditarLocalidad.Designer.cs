@@ -36,6 +36,7 @@
             btnGuardar = new Button();
             cboProvincia = new ComboBox();
             label1 = new Label();
+            btnAgregarProvincia = new Button();
             ((System.ComponentModel.ISupportInitialize)numericCodigoPostal).BeginInit();
             SuspendLayout();
             // 
@@ -113,11 +114,22 @@
             label1.TabIndex = 16;
             label1.Text = "Provincia:";
             // 
+            // btnAgregarProvincia
+            // 
+            btnAgregarProvincia.Location = new Point(508, 173);
+            btnAgregarProvincia.Name = "btnAgregarProvincia";
+            btnAgregarProvincia.Size = new Size(39, 23);
+            btnAgregarProvincia.TabIndex = 17;
+            btnAgregarProvincia.Text = "...";
+            btnAgregarProvincia.UseVisualStyleBackColor = true;
+            btnAgregarProvincia.Click += btnAgregarProvincia_Click;
+            // 
             // FrmNuevoEditarLocalidad
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(678, 356);
+            Controls.Add(btnAgregarProvincia);
             Controls.Add(label1);
             Controls.Add(cboProvincia);
             Controls.Add(btnCancelar);
@@ -127,6 +139,7 @@
             Controls.Add(txtNombre);
             Controls.Add(label2);
             Name = "FrmNuevoEditarLocalidad";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FrmNuevoEditarLocalidad";
             ((System.ComponentModel.ISupportInitialize)numericCodigoPostal).EndInit();
             ResumeLayout(false);
@@ -143,5 +156,6 @@
         private Button btnGuardar;
         private ComboBox cboProvincia;
         private Label label1;
+        private Button btnAgregarProvincia;
     }
 }

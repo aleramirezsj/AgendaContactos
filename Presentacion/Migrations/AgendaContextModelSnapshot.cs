@@ -51,6 +51,9 @@ namespace Presentacion.Migrations
                     b.Property<bool?>("Favorito")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("LocalidadId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -61,6 +64,8 @@ namespace Presentacion.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocalidadId");
 
                     b.ToTable("Contactos");
                 });
@@ -108,6 +113,15 @@ namespace Presentacion.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Provincias");
+                });
+
+            modelBuilder.Entity("Presentacion.Modelos.Contacto", b =>
+                {
+                    b.HasOne("Presentacion.Modelos.Localidad", "Localidad")
+                        .WithMany()
+                        .HasForeignKey("LocalidadId");
+
+                    b.Navigation("Localidad");
                 });
 
             modelBuilder.Entity("Presentacion.Modelos.Localidad", b =>

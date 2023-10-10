@@ -16,6 +16,8 @@ namespace Presentacion.Forms.Provincias
     {
         Provincia provincia = new Provincia();
         int idProvinciaEditada = 0;
+        public int IdAgregadoEditado { get; set; }
+
         public FrmNuevoEditarProvincia()
         {
             InitializeComponent();
@@ -72,6 +74,7 @@ namespace Presentacion.Forms.Provincias
                 db.Entry((Provincia)provincia).State = EntityState.Modified;
             }
             db.SaveChanges();
+            this.IdAgregadoEditado = provincia.Id;
             this.Close();
         }
     }

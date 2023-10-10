@@ -13,5 +13,10 @@ namespace Presentacion.Modelos
         public int CodigoPostal { get; set; }
         public int? ProvinciaId { get; set; }
         public Provincia Provincia { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

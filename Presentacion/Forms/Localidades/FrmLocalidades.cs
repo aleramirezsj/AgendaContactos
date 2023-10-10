@@ -22,7 +22,7 @@ namespace Presentacion.Forms.Localidades
         private void CargarGrilla()
         {
             AgendaContext db = new AgendaContext();
-            dataGridLocalidades.DataSource = db.Localidades.Include(l=>l.Provincia).ToList();
+            dataGridLocalidades.DataSource = db.Localidades.Include(l => l.Provincia).ToList();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -45,6 +45,19 @@ namespace Presentacion.Forms.Localidades
             FrmNuevoEditarLocalidad frmNuevoEditarLocalidad = new FrmNuevoEditarLocalidad();
             frmNuevoEditarLocalidad.ShowDialog();
             CargarGrilla();
+            SeleccionarIdAgregadoModificado(frmNuevoEditarLocalidad.IdAgregadoModificado);
+        }
+
+        private void SeleccionarIdAgregadoModificado(int idAgregadoModificado)
+        {
+            foreach(DataGridViewRow fila in dataGridLocalidades.Rows)
+            {
+                if ((int)fila.Cells[0].Value == idAgregadoModificado)
+                {
+                    dataGridLocalidades.CurrentCell =fila.Cells[0];
+                    break;
+                }
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -56,6 +69,7 @@ namespace Presentacion.Forms.Localidades
             FrmNuevoEditarLocalidad frmNuevoEditarLocalidad = new FrmNuevoEditarLocalidad(idAModificar);
             frmNuevoEditarLocalidad.ShowDialog();
             CargarGrilla();
+            SeleccionarIdAgregadoModificado(frmNuevoEditarLocalidad.IdAgregadoModificado);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -63,7 +77,7 @@ namespace Presentacion.Forms.Localidades
             AgendaContext db = new AgendaContext();
             //obtenemos el id y el nombre del contacto seleccionado
             int idABorrar = (int)dataGridLocalidades.CurrentRow.Cells[0].Value;
-            string localidadABorrar = (string)dataGridLocalidades.CurrentRow.Cells[1].Value ;
+            string localidadABorrar = (string)dataGridLocalidades.CurrentRow.Cells[1].Value;
 
             //preguntamos si está seguro que desea borrar
             DialogResult pregunta = MessageBox.Show($"¿Está seguro que desea borrar la localidad {localidadABorrar}?", "Eliminar localidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

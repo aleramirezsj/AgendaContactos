@@ -1,4 +1,5 @@
-﻿using Presentacion.Modelos;
+﻿using Microsoft.EntityFrameworkCore;
+using Presentacion.Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,15 @@ namespace Presentacion
         private void CargarGrilla()
         {
             AgendaContext db = new AgendaContext();
-            dataGridContactos.DataSource = db.Contactos.ToList();
+            if(txtBusqueda.Text.Trim().Length > 0 )
+            {
+                dataGridContactos.DataSource = db.Contactos.Where(c=>c.Nombre.Contains(txtBusqueda.Text.Trim())||c.Apellido.Contains(txtBusqueda.Text.Trim())).Include(c=>c.Localidad).ToList();
+            }
+            else
+            {
+                dataGridContactos.DataSource = db.Contactos.Include(c => c.Localidad).ToList();
+            }
+            
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -70,14 +79,10 @@ namespace Presentacion
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            CargarGrillaFiltrada();
+            CargarGrilla();
         }
 
-        private void CargarGrillaFiltrada()
-        {
-            AgendaContext db = new AgendaContext();
-            dataGridContactos.DataSource = db.Contactos.Where(c => c.Apellido.Contains(txtBusqueda.Text) || c.Nombre.Contains(txtBusqueda.Text)).ToList();
-        }
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {

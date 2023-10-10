@@ -19,6 +19,9 @@ public partial class Contacto
 
     public bool? Favorito { get; set; }
 
+    public int? LocalidadId { get; set; }
+
+    public Localidad Localidad { get; set; }
     public override string ToString()
     {
         return $"{Id} - {Apellido} {Nombre} {Email}" ;

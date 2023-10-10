@@ -45,6 +45,7 @@
             dataGridLocalidades.Location = new Point(129, 52);
             dataGridLocalidades.Name = "dataGridLocalidades";
             dataGridLocalidades.RowTemplate.Height = 25;
+            dataGridLocalidades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridLocalidades.Size = new Size(499, 193);
             dataGridLocalidades.TabIndex = 0;
             // 

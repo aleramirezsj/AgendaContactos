@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Presentacion.Forms.Localidades;
 using Presentacion.Modelos;
 using System;
 using System.Collections.Generic;
@@ -14,38 +15,49 @@ namespace Presentacion
 {
     public partial class FrmNuevoEditarContacto : Form
     {
-        AgendaContext db=new AgendaContext();
-        
+        AgendaContext db = new AgendaContext();
+
         //campos que utilizamos si modificamos a un contacto
-        int idModificado=0;
-        Contacto contacto=new Contacto();
+        int idModificado = 0;
+        Contacto contacto = new Contacto();
 
 
         //constructor que se ejecuta cuando creamos un nuevo contacto
         public FrmNuevoEditarContacto()
         {
             InitializeComponent();
+            CargarComboLocalidad();
 
+        }
+
+        private void CargarComboLocalidad()
+        {
+            comboLocalidad.DataSource = db.Localidades.ToList();
+            comboLocalidad.DisplayMember = "Nombre";
+            comboLocalidad.ValueMember = "Id";
         }
 
         //constructor que se ejecuta cuando modificamos a un contacto
         public FrmNuevoEditarContacto(int idAModificar)
         {
-            InitializeComponent();  
+            InitializeComponent();
             this.idModificado = idAModificar;
+            CargarComboLocalidad();
             CargarDatosDeContactoAModificar();
+
         }
 
         private void CargarDatosDeContactoAModificar()
         {
-            contacto=db.Contactos.Find(this.idModificado);
+            contacto = db.Contactos.Find(this.idModificado);
             txtApellido.Text = contacto.Apellido;
-            txtNombre.Text= contacto.Nombre;
+            txtNombre.Text = contacto.Nombre;
             txtDirección.Text = contacto.Direccion;
             txtEmail.Text = contacto.Email;
-            numericTelefono.Value=contacto.Telefono??0;
-            checkFavorito.Checked = contacto.Favorito??false;
-            
+            numericTelefono.Value = contacto.Telefono ?? 0;
+            checkFavorito.Checked = contacto.Favorito ?? false;
+            comboLocalidad.SelectedValue = contacto.LocalidadId ?? 0;
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -61,17 +73,27 @@ namespace Presentacion
             contacto.Direccion = txtDirección.Text;
             contacto.Telefono = (long)numericTelefono.Value;
             contacto.Favorito = checkFavorito.Checked;
-            
+            contacto.LocalidadId = (int)comboLocalidad.SelectedValue;
+
             if (this.idModificado == 0)
             {
                 db.Contactos.Add(contacto);
-            } else
+            }
+            else
             {
                 contacto.Id = this.idModificado;
                 db.Entry((Contacto)contacto).State = EntityState.Modified;
             }
             db.SaveChanges();
             this.Close();
+        }
+
+        private void btnAgregarLocalidad_Click(object sender, EventArgs e)
+        {
+            FrmNuevoEditarLocalidad frmNuevoEditarLocalidad = new FrmNuevoEditarLocalidad();
+            frmNuevoEditarLocalidad.ShowDialog();
+            CargarComboLocalidad();
+            comboLocalidad.SelectedValue= frmNuevoEditarLocalidad.IdAgregadoModificado;
         }
     }
 }

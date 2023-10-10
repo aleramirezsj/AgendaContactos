@@ -32,11 +32,13 @@
             iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             gestionarLocalidadesToolStripMenuItem = new ToolStripMenuItem();
+            gestionarProvinciasToolStripMenuItem = new ToolStripMenuItem();
             iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
-            gestionarProvinciasToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            listadoDeProvinciasToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             // 
             // iconMenuItem1
             // 
-            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem3, gestionarLocalidadesToolStripMenuItem, gestionarProvinciasToolStripMenuItem });
+            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem3, gestionarLocalidadesToolStripMenuItem, gestionarProvinciasToolStripMenuItem, toolStripSeparator2, listadoDeProvinciasToolStripMenuItem });
             iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -76,6 +78,13 @@
             gestionarLocalidadesToolStripMenuItem.Size = new Size(190, 26);
             gestionarLocalidadesToolStripMenuItem.Text = "Gestionar localidades";
             gestionarLocalidadesToolStripMenuItem.Click += gestionarLocalidadesToolStripMenuItem_Click;
+            // 
+            // gestionarProvinciasToolStripMenuItem
+            // 
+            gestionarProvinciasToolStripMenuItem.Name = "gestionarProvinciasToolStripMenuItem";
+            gestionarProvinciasToolStripMenuItem.Size = new Size(190, 26);
+            gestionarProvinciasToolStripMenuItem.Text = "Gestionar provincias";
+            gestionarProvinciasToolStripMenuItem.Click += gestionarProvinciasToolStripMenuItem_Click;
             // 
             // iconMenuItem2
             // 
@@ -112,12 +121,17 @@
             iconMenuItem5.Text = "Acerca de ...";
             iconMenuItem5.Click += iconMenuItem5_Click;
             // 
-            // gestionarProvinciasToolStripMenuItem
+            // toolStripSeparator2
             // 
-            gestionarProvinciasToolStripMenuItem.Name = "gestionarProvinciasToolStripMenuItem";
-            gestionarProvinciasToolStripMenuItem.Size = new Size(190, 26);
-            gestionarProvinciasToolStripMenuItem.Text = "Gestionar provincias";
-            gestionarProvinciasToolStripMenuItem.Click += gestionarProvinciasToolStripMenuItem_Click;
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(187, 6);
+            // 
+            // listadoDeProvinciasToolStripMenuItem
+            // 
+            listadoDeProvinciasToolStripMenuItem.Name = "listadoDeProvinciasToolStripMenuItem";
+            listadoDeProvinciasToolStripMenuItem.Size = new Size(190, 26);
+            listadoDeProvinciasToolStripMenuItem.Text = "Listado de provincias";
+            listadoDeProvinciasToolStripMenuItem.Click += listadoDeProvinciasToolStripMenuItem_Click;
             // 
             // FrmMenu
             // 
@@ -146,5 +160,7 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
         private ToolStripMenuItem gestionarLocalidadesToolStripMenuItem;
         private ToolStripMenuItem gestionarProvinciasToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem listadoDeProvinciasToolStripMenuItem;
     }
 }

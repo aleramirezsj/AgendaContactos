@@ -1,5 +1,6 @@
 ﻿using Presentacion.Forms.Localidades;
 using Presentacion.Forms.Provincias;
+using Presentacion.ViewForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,6 +47,12 @@ namespace Presentacion
         {
             FrmProvincias frmProvincias = new FrmProvincias();
             frmProvincias.ShowDialog();
+        }
+
+        private void listadoDeProvinciasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProvinciasViewForm provinciasViewForm = new ProvinciasViewForm();
+            provinciasViewForm.ShowDialog();
         }
     }
 }
