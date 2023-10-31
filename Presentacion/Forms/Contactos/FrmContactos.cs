@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Presentacion.Modelos;
+using Presentacion.Respositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace Presentacion
 {
     public partial class FrmContactos : Form
     {
-
+        RepositoryContactos repositoryContactos=new RepositoryContactos();
         public FrmContactos()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace Presentacion
             }
             else
             {
-                dataGridContactos.DataSource = db.Contactos.Include(c => c.Localidad).ToList();
+                dataGridContactos.DataSource = repositoryContactos.GetAll();
             }
             
         }
