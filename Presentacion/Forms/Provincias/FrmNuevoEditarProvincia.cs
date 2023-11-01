@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Presentacion.Modelos;
+using Presentacion.Respositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Presentacion.Forms.Provincias
 {
     public partial class FrmNuevoEditarProvincia : Form
     {
+        RepositoryProvincias repositoryProvincias = new RepositoryProvincias();
         Provincia provincia = new Provincia();
         int idProvinciaEditada = 0;
         public int IdAgregadoEditado { get; set; }
@@ -39,8 +41,7 @@ namespace Presentacion.Forms.Provincias
 
         private void CargarDatosDeLaProvincia()
         {
-            AgendaContext db = new AgendaContext();
-            provincia = db.Provincias.Find(this.idProvinciaEditada);
+            provincia = repositoryProvincias.GetById(this.idProvinciaEditada);
             if (provincia != null)
             {
                 txtNombre.Text = provincia.Nombre;
@@ -62,18 +63,16 @@ namespace Presentacion.Forms.Provincias
             provincia.Region = (RegionEnum)comboRegion.SelectedValue;
 
             //instanciamos la clase AgendaContext para poder operar con los datos
-            AgendaContext db = new AgendaContext();
 
             //chequeamos si estamos cargando una nueva provincia, evaluando el campo idProvinciaEditada
             if (this.idProvinciaEditada == 0)
             {
-                db.Provincias.Add(provincia);
+                repositoryProvincias.Add(provincia);
             }
             else
             {
-                db.Entry((Provincia)provincia).State = EntityState.Modified;
+                repositoryProvincias.Update(provincia);
             }
-            db.SaveChanges();
             this.IdAgregadoEditado = provincia.Id;
             this.Close();
         }

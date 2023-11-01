@@ -28,7 +28,7 @@ namespace Presentacion
             AgendaContext db = new AgendaContext();
             if(txtBusqueda.Text.Trim().Length > 0 )
             {
-                dataGridContactos.DataSource = db.Contactos.Where(c=>c.Nombre.Contains(txtBusqueda.Text.Trim())||c.Apellido.Contains(txtBusqueda.Text.Trim())).Include(c=>c.Localidad).ToList();
+                dataGridContactos.DataSource = repositoryContactos.GetAll(txtBusqueda.Text);
             }
             else
             {
@@ -52,7 +52,6 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            AgendaContext db = new AgendaContext();
             //obtenemos el id y el nombre del contacto seleccionado
             int idABorrar = (int)dataGridContactos.CurrentRow.Cells[0].Value;
             string contactoABorrar = (string)dataGridContactos.CurrentRow.Cells[1].Value + " " + dataGridContactos.CurrentRow.Cells[2].Value;
@@ -65,9 +64,7 @@ namespace Presentacion
             {
                 try
                 {
-                    Contacto contacto = db.Contactos.Find(idABorrar);
-                    db.Contactos.Remove(contacto);
-                    db.SaveChanges();
+                    repositoryContactos.Remove(idABorrar);
                     CargarGrilla();
                 }
                 catch (Exception error)

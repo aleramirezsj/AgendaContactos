@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Presentacion.Forms.Localidades;
 using Presentacion.Modelos;
+using Presentacion.Respositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace Presentacion
     public partial class FrmNuevoEditarContacto : Form
     {
         AgendaContext db = new AgendaContext();
+        RepositoryContactos repositoryContactos = new RepositoryContactos();
 
         //campos que utilizamos si modificamos a un contacto
         int idModificado = 0;
@@ -49,7 +51,7 @@ namespace Presentacion
 
         private void CargarDatosDeContactoAModificar()
         {
-            contacto = db.Contactos.Find(this.idModificado);
+            contacto = repositoryContactos.GetById(this.idModificado);
             txtApellido.Text = contacto.Apellido;
             txtNombre.Text = contacto.Nombre;
             txtDirección.Text = contacto.Direccion;
@@ -77,14 +79,13 @@ namespace Presentacion
 
             if (this.idModificado == 0)
             {
-                db.Contactos.Add(contacto);
+                repositoryContactos.Add(contacto);
             }
             else
             {
                 contacto.Id = this.idModificado;
-                db.Entry((Contacto)contacto).State = EntityState.Modified;
+                repositoryContactos.Update(contacto);
             }
-            db.SaveChanges();
             this.Close();
         }
 

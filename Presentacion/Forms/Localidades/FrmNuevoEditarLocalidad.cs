@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Presentacion.Forms.Provincias;
 using Presentacion.Modelos;
+using Presentacion.Respositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,8 @@ namespace Presentacion.Forms.Localidades
 {
     public partial class FrmNuevoEditarLocalidad : Form
     {
-        AgendaContext db = new AgendaContext();
+        RepositoryLocalidades repositoryLocalidades= new RepositoryLocalidades();
+        RepositoryProvincias repositoryProvincias= new RepositoryProvincias();
         public int IdAgregadoModificado { get; set; }
 
         //campos que utilizamos si modificamos a un contacto
@@ -31,7 +33,7 @@ namespace Presentacion.Forms.Localidades
 
         private void CargarComboProvincia()
         {
-            cboProvincia.DataSource = db.Provincias.ToList();
+            cboProvincia.DataSource = repositoryProvincias.GetAll();
             cboProvincia.DisplayMember = "Nombre";
             cboProvincia.ValueMember = "Id";
         }
@@ -47,7 +49,7 @@ namespace Presentacion.Forms.Localidades
 
         private void CargarDatosDeLocalidadAModificar()
         {
-            localidad = db.Localidades.Find(this.idModificado);
+            localidad = repositoryLocalidades.GetById(this.idModificado);
 
             txtNombre.Text = localidad.Nombre;
             numericCodigoPostal.Value = localidad.CodigoPostal;
@@ -65,14 +67,13 @@ namespace Presentacion.Forms.Localidades
 
             if (this.idModificado == 0)
             {
-                db.Localidades.Add(localidad);
+               repositoryLocalidades.Add(localidad);
             }
             else
             {
                 localidad.Id = this.idModificado;
-                db.Entry((Localidad)localidad).State = EntityState.Modified;
+                repositoryLocalidades.Update(localidad);
             }
-            db.SaveChanges();
             this.IdAgregadoModificado = localidad.Id;
             this.Close();
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Presentacion.Modelos;
+using Presentacion.Respositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Presentacion.Forms.Localidades
 {
     public partial class FrmLocalidades : Form
     {
+        RepositoryLocalidades repositoryLocalidades = new RepositoryLocalidades();
         public FrmLocalidades()
         {
             InitializeComponent();
@@ -21,8 +23,7 @@ namespace Presentacion.Forms.Localidades
         }
         private void CargarGrilla()
         {
-            AgendaContext db = new AgendaContext();
-            dataGridLocalidades.DataSource = db.Localidades.Include(l => l.Provincia).ToList();
+            dataGridLocalidades.DataSource = repositoryLocalidades.GetAll();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -36,8 +37,7 @@ namespace Presentacion.Forms.Localidades
         }
         private void CargarGrillaFiltrada()
         {
-            AgendaContext db = new AgendaContext();
-            dataGridLocalidades.DataSource = db.Localidades.Where(c => c.Nombre.Contains(txtBusqueda.Text)).ToList();
+            dataGridLocalidades.DataSource = repositoryLocalidades.GetAll(txtBusqueda.Text);
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -74,7 +74,6 @@ namespace Presentacion.Forms.Localidades
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            AgendaContext db = new AgendaContext();
             //obtenemos el id y el nombre del contacto seleccionado
             int idABorrar = (int)dataGridLocalidades.CurrentRow.Cells[0].Value;
             string localidadABorrar = (string)dataGridLocalidades.CurrentRow.Cells[1].Value;
@@ -87,9 +86,7 @@ namespace Presentacion.Forms.Localidades
             {
                 try
                 {
-                    Localidad localidad = db.Localidades.Find(idABorrar);
-                    db.Localidades.Remove(localidad);
-                    db.SaveChanges();
+                    repositoryLocalidades.Remove(idABorrar);
                     CargarGrilla();
                 }
                 catch (Exception error)

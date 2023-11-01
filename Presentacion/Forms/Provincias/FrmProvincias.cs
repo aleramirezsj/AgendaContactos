@@ -1,4 +1,5 @@
 ﻿using Presentacion.Modelos;
+using Presentacion.Respositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,9 @@ namespace Presentacion.Forms.Provincias
 {
     public partial class FrmProvincias : Form
     {
+        RepositoryProvincias repositoryProvincias= new RepositoryProvincias();
         //constructor
-        AgendaContext db = new AgendaContext();
+
         public FrmProvincias()
         {
             InitializeComponent();
@@ -27,11 +29,11 @@ namespace Presentacion.Forms.Provincias
             //si hay texto escrito en el txtBusqueda va a ejecutar el filtro
             if(txtBusqueda.Text.Trim().Length > 0 )
             {
-                dataGridProvincias.DataSource = db.Provincias.Where(p => p.Nombre.Contains(txtBusqueda.Text.Trim())).ToList();
+                dataGridProvincias.DataSource = repositoryProvincias.GetAll(txtBusqueda.Text);
             }
             else
             {
-                dataGridProvincias.DataSource = db.Provincias.ToList();
+                dataGridProvincias.DataSource = repositoryProvincias.GetAll();
             }
             
         }
@@ -70,9 +72,7 @@ namespace Presentacion.Forms.Provincias
             {
                 try
                 {
-                    Provincia provincia = db.Provincias.Find(idProvinciaActual);
-                    db.Provincias.Remove(provincia);
-                    db.SaveChanges();
+                    repositoryProvincias.Remove(idProvinciaActual);
                     CargarGrilla();
                 }
                 catch (Exception error)
